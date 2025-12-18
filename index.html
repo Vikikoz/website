@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viktor Kozak | Portfolio</title>
+    <meta name="description" content="Portfolio d'étudiant en Géographie spécialisé en Géomatique et Intelligence Artificielle.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Configuration Tailwind personnalisée -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        // Palette "Ultra Clean Dark"
+                        bg: '#050505',        // Noir quasi pur
+                        surface: '#121212',   // Gris très sombre pour les cartes
+                        surfaceHover: '#1E1E1E',
+                        primary: '#6366f1',   // Indigo électrique (la touche de couleur)
+                        secondary: '#a855f7', // Violet (accent secondaire)
+                        text: {
+                            main: '#ffffff',
+                            muted: '#9ca3af', // Gris neutre
+                            dark: '#52525b'   // Gris foncé pour détails discrets
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Soulignement animé au survol */
+        .hover-underline {
+            position: relative;
+            display: inline-block;
+        }
+        .hover-underline::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            background-color: #6366f1;
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+        .hover-underline:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        /* Masquer scrollbar */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-bg text-text-muted antialiased selection:bg-primary selection:text-white">
+
+    <!-- NAVIGATION (Ordre mis à jour : Accueil -> Profil -> Projets -> Contact) -->
+    <nav class="fixed w-full z-50 bg-bg/90 backdrop-blur-sm transition-all duration-300 py-4">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between">
+                <!-- Logo Type -->
+                <a href="#" class="text-xl font-bold text-white tracking-tight">
+                    Viktor Kozak<span class="text-primary">.</span>
+                </a>
+                
+                <!-- Menu Bureau -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#accueil" class="text-sm font-medium text-text-muted hover:text-white transition-colors">Accueil</a>
+                    <a href="#a-propos" class="text-sm font-medium text-text-muted hover:text-white transition-colors">Profil</a>
+                    <a href="#projets" class="text-sm font-medium text-text-muted hover:text-white transition-colors">Projets</a>
+                    <a href="#contact" class="text-sm font-medium text-primary hover:text-white transition-colors">Contact</a>
+                </div>
+
+                <!-- Menu Mobile -->
+                <button class="md:hidden text-white" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden bg-bg border-t border-white/5 absolute w-full left-0 px-6 py-4 space-y-4 md:hidden">
+            <a href="#accueil" class="block text-white">Accueil</a>
+            <a href="#a-propos" class="block text-white">Profil</a>
+            <a href="#projets" class="block text-white">Projets</a>
+            <a href="#contact" class="block text-primary">Contact</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="accueil" class="min-h-screen flex items-center pt-20">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 w-full">
+            <div class="max-w-3xl">
+                <!-- Badge décoratif Tech -->
+                <div class="inline-flex items-center gap-2 px-3 py-1 mb-6 text-xs font-medium tracking-wider text-primary border border-primary/20 bg-primary/5 rounded-full">
+                    <span class="relative flex h-2 w-2">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                    </span>
+                    L3 GÉOGRAPHIE & AMÉNAGEMENT
+                </div>
+                <h1 class="text-5xl md:text-7xl font-bold text-white tracking-tight leading-tight mb-8">
+                    Analyser le territoire <br>
+                    par la donnée.
+                </h1>
+                <p class="text-xl text-text-muted leading-relaxed max-w-2xl mb-12">
+                    Je combine la <span class="text-white">Géomatique</span> et le <span class="text-white">Deep Learning</span> pour automatiser l'analyse spatiale. 
+                    Actuellement en recherche d'alternance Master.
+                </p>
+                
+                <div class="flex flex-wrap gap-8 items-center">
+                    <a href="#projets" class="text-white font-medium border-b border-white hover:border-primary hover:text-primary transition-colors pb-1">
+                        Voir mes travaux
+                    </a>
+                    <div class="flex gap-4">
+                        <a href="#" class="text-text-muted hover:text-white transition-colors"><i class="fab fa-github text-xl"></i></a>
+                        <a href="#" class="text-text-muted hover:text-white transition-colors"><i class="fab fa-linkedin text-xl"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Petit élément décoratif en bas à droite (Coordonnées fictives) -->
+        <div class="absolute bottom-10 right-10 hidden md:block text-xs font-mono text-text-dark opacity-50">
+            LAT: 48.8566 N <br> LNG: 2.3522 E
+        </div>
+    </section>
+
+    <!-- COMPETENCES & PROFIL (Maintenant en premier) -->
+    <section id="a-propos" class="py-24 border-t border-white/5 bg-bg">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+                
+                <!-- Titre -->
+                <div class="md:col-span-4">
+                    <h2 class="text-3xl font-bold text-white sticky top-24">Profil & <br>Compétences</h2>
+                </div>
+
+                <!-- Contenu -->
+                <div class="md:col-span-8 space-y-16">
+                    
+                    <!-- Bio -->
+                    <div>
+                        <p class="text-lg text-text-muted leading-relaxed">
+                            Actuellement en L3, je construis un profil hybride. Mon stage de 3 mois en R&D m'a permis de maîtriser la chaîne de traitement IA complète : de la création du dataset à l'entraînement de modèles (YOLO, U-Net). Je souhaite poursuivre en Master Géomatique pour approfondir ces sujets.
+                        </p>
+                    </div>
+
+                    <!-- Skills List -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                        
+                        <!-- Colonne 1 -->
+                        <div>
+                            <h4 class="text-white font-semibold mb-6 flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-secondary"></span> SIG & Cartographie
+                            </h4>
+                            <ul class="space-y-4">
+                                <li class="flex justify-between border-b border-white/5 pb-2">
+                                    <span>QGIS & ArcGIS Pro</span>
+                                </li>
+                                <li class="flex justify-between border-b border-white/5 pb-2">
+                                    <span>Télédétection (Sentinel, Landsat)</span>
+                                </li>
+                                <li class="flex justify-between border-b border-white/5 pb-2">
+                                    <span>Cartographie thématique</span>
+                                </li>
+                                <li class="flex justify-between border-b border-white/5 pb-2">
+                                    <span>Bases de données spatiales</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Colonne 2 -->
+                        <div>
+                            <h4 class="text-white font-semibold mb-6 flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-primary"></span> Programmation & IA
+                            </h4>
+                            <ul class="space-y-4">
+                                <li class="flex justify-between border-b border-white/5 pb-2">
+                                    <span>Python (Pandas, GeoPandas)</span>
+                                </li>
+                                <li class="flex justify-between border-b border-white/5 pb-2">
+                                    <span>Deep Learning (YOLO, U-Net)</span>
+                                </li>
+                                <li class="flex justify-between border-b border-white/5 pb-2">
+                                    <span>Création de Datasets</span>
+                                </li>
+                                <li class="flex justify-between border-b border-white/5 pb-2">
+                                    <span>SQL & Gestion de données</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Colonne 3 -->
+                        <div>
+                            <h4 class="text-white font-semibold mb-6 flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Automatisation et Outils
+                            </h4>
+                            <ul class="space-y-4">
+                                <li class="flex justify-between border-b border-white/5 pb-2">
+                                    <span>Prefect & N8N</span>
+                                </li>
+                                <li class="flex justify-between border-b border-white/5 pb-2">
+                                    <span>Git / GitHub</span>
+                                </li>
+                                <li class="flex justify-between border-b border-white/5 pb-2">
+                                    <span>Docker</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJETS SECTION (Déplacé ici) -->
+    <section id="projets" class="py-24 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-end mb-16">
+                <h2 class="text-3xl font-bold text-white">Projets Sélectionnés</h2>
+                <span class="text-sm text-text-dark">2024 — 2025</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
+                
+                <!-- Projet 1 -->
+                <article class="group cursor-pointer">
+                    <div class="relative overflow-hidden rounded-lg bg-surface aspect-[4/3] mb-6">
+                        <img src="https://placehold.co/800x600/121212/6366f1?text=IA+Detection" alt="IA Project" class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out grayscale group-hover:grayscale-0">
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">Détection IA Satellite</h3>
+                            <p class="text-text-muted text-sm mb-3">Entraînement YOLOv8 & U-Net sur imagerie aérienne.</p>
+                            <div class="flex gap-2">
+                                <span class="text-xs text-text-dark border border-white/10 px-2 py-1 rounded">Python</span>
+                                <span class="text-xs text-text-dark border border-white/10 px-2 py-1 rounded">PyTorch</span>
+                            </div>
+                        </div>
+                        <i class="fas fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform text-white"></i>
+                    </div>
+                </article>
+
+                <!-- Projet 2 -->
+                <article class="group cursor-pointer">
+                    <div class="relative overflow-hidden rounded-lg bg-surface aspect-[4/3] mb-6">
+                        <img src="https://placehold.co/800x600/121212/6366f1?text=Analyse+Urbaine" alt="Urban Project" class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out grayscale group-hover:grayscale-0">
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">Analyse Urbaine</h3>
+                            <p class="text-text-muted text-sm mb-3">Cartographie des flux et analyse spatiale urbaine.</p>
+                            <div class="flex gap-2">
+                                <span class="text-xs text-text-dark border border-white/10 px-2 py-1 rounded">QGIS</span>
+                                <span class="text-xs text-text-dark border border-white/10 px-2 py-1 rounded">DataViz</span>
+                            </div>
+                        </div>
+                        <i class="fas fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform text-white"></i>
+                    </div>
+                </article>
+
+                <!-- Projet 3 -->
+                <article class="group cursor-pointer">
+                    <div class="relative overflow-hidden rounded-lg bg-surface aspect-[4/3] mb-6">
+                        <img src="https://placehold.co/800x600/121212/6366f1?text=Webmapping" alt="Web Project" class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out grayscale group-hover:grayscale-0">
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">Interface Webmapping</h3>
+                            <p class="text-text-muted text-sm mb-3">Visualisation interactive de données open-data.</p>
+                            <div class="flex gap-2">
+                                <span class="text-xs text-text-dark border border-white/10 px-2 py-1 rounded">Leaflet</span>
+                                <span class="text-xs text-text-dark border border-white/10 px-2 py-1 rounded">JS</span>
+                            </div>
+                        </div>
+                        <i class="fas fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform text-white"></i>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT (Footer avec Dégradé Radial ajusté avec 5% de blanc pur) -->
+    <!-- Modification : Le blanc commence maintenant à 95% -->
+    <section id="contact" class="py-24 relative overflow-hidden" style="background: radial-gradient(ellipse 160% 100% at 50% 0%, #050505 40%, #1e1b4b 50%, #4f46e5 60%, #a855f7 75%, #ffffff 95%);">
+        
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center relative z-10">
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-8">Travaillons ensemble.</h2>
+            <p class="text-gray-300 mb-10 max-w-xl mx-auto">
+                Disponible pour des opportunités de stage ou d'alternance.
+            </p>
+            
+            <!-- Bouton -->
+            <a href="mailto:contact@etudiant-geo.fr" class="inline-block bg-white text-black font-bold px-8 py-4 rounded-full hover:bg-black hover:text-white transition-colors shadow-xl">
+                Me contacter
+            </a>
+            
+            <!-- Footer bas -->
+            <div class="mt-24 pt-8 border-t border-gray-900/10 flex flex-col md:flex-row justify-between items-center text-sm text-gray-600">
+                <p class="font-medium">&copy; 2025 Portfolio.</p>
+                <div class="flex gap-6 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-700 hover:text-secondary transition-colors"><i class="fab fa-linkedin text-2xl"></i></a>
+                    <a href="#" class="text-gray-700 hover:text-secondary transition-colors"><i class="fab fa-github text-2xl"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
