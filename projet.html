@@ -57,7 +57,9 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
                 
                 <!-- Sidebar Details -->
-                <div class="col-span-1 space-y-8 sticky top-24 h-fit">
+                <!-- CORRECTION ICI : Ajout du préfixe 'md:' devant sticky et top-24 -->
+                <!-- Cela signifie : "Ne sois collant (sticky) QUE sur les écrans moyens (md) et plus grands" -->
+                <div class="col-span-1 space-y-8 md:sticky md:top-24 h-fit">
                     <div>
                         <h4 class="text-white font-semibold mb-2 uppercase tracking-widest text-xs">Rôle</h4>
                         <p id="project-role" class="text-lg text-white"></p>
@@ -191,6 +193,9 @@
 
             // --- Génération de la Galerie ---
             const galleryContainer = document.getElementById('project-gallery');
+            // Vider la galerie au cas où
+            galleryContainer.innerHTML = ''; 
+            
             if (data.gallery && data.gallery.length > 0) {
                 data.gallery.forEach((imgSrc, index) => {
                     // Création de l'élément HTML pour chaque image
