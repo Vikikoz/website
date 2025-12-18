@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet | Viktor Kozak</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Configuration Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        bg: '#050505',
+                        surface: '#121212',
+                        surfaceHover: '#1E1E1E',
+                        primary: '#6366f1',
+                        secondary: '#a855f7',
+                        text: { main: '#ffffff', muted: '#9ca3af', dark: '#52525b' }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-bg text-text-muted antialiased selection:bg-primary selection:text-white">
+
+    <!-- CONTENT -->
+    <div id="project-container" class="min-h-screen pb-24 opacity-0 transition-opacity duration-500">
+        
+        <!-- Project Hero -->
+        <div class="h-[60vh] relative">
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-bg/50 to-bg z-10"></div>
+            <!-- L'image de couverture sera chargée ici -->
+            <img id="project-hero-img" src="" alt="Project Cover" class="w-full h-full object-cover">
+            <div class="absolute bottom-0 left-0 w-full p-8 md:p-16 z-20 max-w-7xl mx-auto">
+                <div id="project-tags" class="flex gap-3 mb-6"></div>
+                <h1 id="project-title" class="text-4xl md:text-7xl font-bold text-white mb-4"></h1>
+                <p id="project-subtitle" class="text-xl text-text-muted max-w-2xl"></p>
+            </div>
+        </div>
+
+        <!-- Project Content -->
+        <div class="max-w-5xl mx-auto px-6 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
+                
+                <!-- Sidebar Details -->
+                <div class="col-span-1 space-y-8 sticky top-24 h-fit">
+                    <div>
+                        <h4 class="text-white font-semibold mb-2 uppercase tracking-widest text-xs">Rôle</h4>
+                        <p id="project-role" class="text-lg text-white"></p>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-semibold mb-2 uppercase tracking-widest text-xs">Date</h4>
+                        <p id="project-date" class="text-text-muted"></p>
+                    </div>
+                    <div>
+                        <h4 class="text-white font-semibold mb-2 uppercase tracking-widest text-xs">Stack Technique</h4>
+                        <ul id="project-tech-list" class="flex flex-wrap gap-2"></ul>
+                    </div>
+                    <a href="#" class="inline-flex items-center justify-center w-full gap-2 bg-surface hover:bg-surfaceHover border border-white/10 text-white py-4 rounded-lg transition-all group">
+                        Voir sur GitHub 
+                        <i class="fab fa-github group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Main Description -->
+                <div class="col-span-1 md:col-span-2">
+                    <div id="project-body" class="prose prose-invert prose-lg text-text-muted leading-relaxed">
+                        <!-- Contenu injecté ici -->
+                    </div>
+
+                    <!-- Galerie Dynamique -->
+                    <div class="mt-16 pt-16 border-t border-white/5">
+                        <h3 class="text-2xl font-bold text-white mb-8">Aperçus du projet</h3>
+                        <!-- Conteneur de la galerie qui sera rempli par JS -->
+                        <div id="project-gallery" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <!-- Les images seront injectées ici par le script -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- LIGHTBOX MODAL -->
+    <div id="lightbox" class="fixed inset-0 z-[100] bg-black/95 hidden flex items-center justify-center p-4 backdrop-blur-sm transition-all duration-300 opacity-0" onclick="closeLightbox()">
+        <button class="absolute top-6 right-6 text-white text-4xl hover:text-primary transition-colors z-50">&times;</button>
+        <img id="lightbox-img" src="" alt="Fullscreen" class="max-w-full max-h-[90vh] rounded-lg shadow-2xl scale-95 transition-transform duration-300">
+        <p class="absolute bottom-6 text-text-muted text-sm">Appuyez sur Echap pour fermer</p>
+    </div>
+
+    <!-- SCRIPT LOGIC -->
+    <script>
+        // C'est ici que tu configures les noms de tes fichiers images
+        const projectsData = {
+            "1": {
+                title: "Détection IA Satellite",
+                subtitle: "Identification automatique d'objets sur imagerie aérienne haute résolution.",
+                // Chemin vers ton image dans le dossier assets/img/
+                image: "assets/img/ia-satellite-cover.jpg", 
+                role: "Lead Developer & Data Scientist",
+                date: "Juin - Août 2024",
+                tech: ["Python", "PyTorch", "YOLOv8", "U-Net", "GeoPandas"],
+                tags: ["R&D", "Deep Learning", "Télédétection"],
+                description: `
+                    <p class="mb-4">Ce projet a été réalisé dans le cadre de mon stage de L2/L3 en Recherche & Développement. L'objectif principal était de concevoir un pipeline complet capable de détecter et segmenter des structures spécifiques (bâtiments, végétation) sur des images satellites à très haute résolution.</p>
+                    <h3 class="text-white font-bold text-xl mt-8 mb-4">Méthodologie</h3>
+                    <p class="mb-4">J'ai commencé par la constitution d'un <strong>dataset personnalisé</strong>, annotant manuellement plus de 2000 images pour garantir la qualité des données d'entraînement. Cette étape cruciale a permis d'adapter les modèles aux spécificités du terrain étudié.</p>
+                    <h3 class="text-white font-bold text-xl mt-8 mb-4">Solutions Techniques</h3>
+                    <ul class="list-disc pl-5 space-y-2 mb-6 marker:text-primary">
+                        <li><strong class="text-white">YOLOv8</strong> : Utilisé pour la détection rapide d'objets en temps réel, offrant un excellent compromis vitesse/précision.</li>
+                        <li><strong class="text-white">U-Net</strong> : Déployé pour la segmentation sémantique fine, particulièrement efficace pour délimiter les zones de végétation dense.</li>
+                    </ul>
+                    <p>Les résultats ont permis d'automatiser une tâche qui prenait auparavant plusieurs jours à un cartographe, réduisant le temps de traitement à quelques minutes seulement avec un taux de précision (mAP) supérieur à 85%.</p>
+                `,
+                // Liste des images de la galerie pour ce projet
+                gallery: [
+                    "assets/img/ia-resultat-1.jpg",
+                    "assets/img/ia-resultat-2.jpg"
+                ]
+            },
+            "2": {
+                title: "Analyse Urbaine",
+                subtitle: "Étude des flux de mobilité et accessibilité des services.",
+                image: "assets/img/urban-cover.jpg",
+                role: "Analyste SIG",
+                date: "Janvier - Mars 2025",
+                tech: ["QGIS", "PostGIS", "Matplotlib", "Adobe Illustrator"],
+                tags: ["Urbanisme", "Cartographie", "Analyse Spatiale"],
+                description: `
+                    <p class="mb-4">Dans le cadre d'un projet universitaire, j'ai analysé les dynamiques de mobilité douce dans une agglomération moyenne. L'enjeu était d'identifier les zones de fracture urbaine.</p>
+                    <h3 class="text-white font-bold text-xl mt-8 mb-4">Approche</h3>
+                    <p class="mb-4">L'étude s'est basée sur des données Open Data combinées à des relevés terrain. J'ai utilisé <strong>QGIS</strong> pour réaliser des cartes isochrones et calculer des indices d'accessibilité aux transports en commun.</p>
+                    <p>Le rendu final comprenait une série de cartes thématiques et un tableau de bord interactif permettant aux décideurs de visualiser les zones blanches (mal desservies).</p>
+                `,
+                gallery: [
+                    "assets/img/urban-map-1.jpg",
+                    "assets/img/urban-map-2.jpg"
+                ]
+            }
+        };
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const projectId = urlParams.get('id');
+        const container = document.getElementById('project-container');
+
+        if (projectId && projectsData[projectId]) {
+            const data = projectsData[projectId];
+            
+            // --- Remplissage des infos principales ---
+            document.title = `${data.title} | Viktor Kozak`;
+            document.getElementById('project-title').innerText = data.title;
+            document.getElementById('project-subtitle').innerText = data.subtitle;
+            
+            // Gestion erreur image principale (si le fichier n'existe pas encore)
+            const heroImg = document.getElementById('project-hero-img');
+            heroImg.src = data.image;
+            heroImg.onerror = function() {
+                this.src = `https://placehold.co/1920x1080/121212/6366f1?text=${encodeURIComponent(data.title)}`;
+            };
+
+            document.getElementById('project-role').innerText = data.role;
+            document.getElementById('project-date').innerText = data.date;
+            document.getElementById('project-body').innerHTML = data.description;
+
+            // --- Remplissage Stack Technique ---
+            const techList = document.getElementById('project-tech-list');
+            data.tech.forEach(t => {
+                techList.innerHTML += `<li class="text-xs font-medium text-text-dark border border-white/10 px-3 py-1 rounded-full bg-surface">${t}</li>`;
+            });
+
+            // --- Remplissage Tags ---
+            const tagsContainer = document.getElementById('project-tags');
+            data.tags.forEach(tag => {
+                tagsContainer.innerHTML += `<span class="text-xs font-bold uppercase tracking-wider text-primary border border-primary/20 px-2 py-1 rounded bg-primary/5">${tag}</span>`;
+            });
+
+            // --- Génération de la Galerie ---
+            const galleryContainer = document.getElementById('project-gallery');
+            if (data.gallery && data.gallery.length > 0) {
+                data.gallery.forEach((imgSrc, index) => {
+                    // Création de l'élément HTML pour chaque image
+                    const galleryItem = document.createElement('div');
+                    galleryItem.className = "group relative aspect-video rounded-xl bg-surface border border-white/5 overflow-hidden cursor-pointer";
+                    galleryItem.onclick = () => openLightbox(imgSrc);
+                    
+                    galleryItem.innerHTML = `
+                        <img src="${imgSrc}" alt="Galerie ${index + 1}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.src='https://placehold.co/600x400/121212/6366f1?text=Image+Manquante'">
+                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <i class="fas fa-search-plus text-white text-2xl"></i>
+                        </div>
+                    `;
+                    galleryContainer.appendChild(galleryItem);
+                });
+            } else {
+                // Si pas d'images, on cache la section galerie (optionnel)
+                document.querySelector('.mt-16.pt-16.border-t').style.display = 'none';
+            }
+
+            container.classList.remove('opacity-0');
+        } else {
+            container.innerHTML = `<div class="h-screen flex items-center justify-center text-white flex-col"><h1 class="text-4xl font-bold mb-4">Projet introuvable</h1><a href="index.html" class="text-primary hover:underline">Retour à l'accueil</a></div>`;
+            container.classList.remove('opacity-0');
+        }
+
+        // --- Gestion de la Lightbox ---
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        function openLightbox(src) {
+            lightboxImg.src = src;
+            lightbox.classList.remove('hidden');
+            setTimeout(() => {
+                lightbox.classList.remove('opacity-0');
+                lightboxImg.classList.remove('scale-95');
+                lightboxImg.classList.add('scale-100');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.add('opacity-0');
+            lightboxImg.classList.remove('scale-100');
+            lightboxImg.classList.add('scale-95');
+            
+            setTimeout(() => {
+                lightbox.classList.add('hidden');
+                lightboxImg.src = '';
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+        
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") closeLightbox();
+        });
+    </script>
+</body>
+</html>
