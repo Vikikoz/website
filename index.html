@@ -31,6 +31,13 @@
                             muted: '#9ca3af',
                             dark: '#52525b'
                         }
+                    },
+                    // Ajout pour les délais d'animation
+                    transitionDelay: {
+                        '0': '0ms',
+                        '100': '100ms',
+                        '200': '200ms',
+                        '300': '300ms',
                     }
                 }
             }
@@ -42,6 +49,30 @@
         body { font-family: 'Inter', sans-serif; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* --- ANIMATIONS SCROLL REVEAL --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.2, 1, 0.3, 1); /* Durée légèrement réduite pour plus de réactivité au scroll retour */
+            will-change: opacity, transform;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Animation subtile du background */
+        @keyframes pulse-gradient {
+            0% { background-position: 50% 100%; }
+            50% { background-position: 50% 95%; }
+            100% { background-position: 50% 100%; }
+        }
+        .animate-bg {
+            animation: pulse-gradient 8s ease-in-out infinite;
+            background-size: 120% 120%;
+        }
     </style>
 </head>
 <body class="bg-bg text-text-muted antialiased selection:bg-primary selection:text-white overflow-x-hidden">
@@ -50,10 +81,10 @@
     <div id="main-content">
 
         <!-- HERO SECTION -->
-        <section id="accueil" class="min-h-screen flex items-center pt-20 relative overflow-hidden" style="background: radial-gradient(ellipse 160% 100% at 50% 100%, #050505 50%, #1e1b4b 60%, #4f46e5 70%, #a855f7 80%, #ffffff 97%);">
+        <section id="accueil" class="min-h-screen flex items-center pt-16 relative overflow-hidden animate-bg" style="background: radial-gradient(ellipse 160% 100% at 50% 100%, #050505 50%, #1e1b4b 60%, #4f46e5 70%, #a855f7 80%, #ffffff 97%);">
             <div class="max-w-7xl mx-auto px-6 lg:px-8 w-full relative z-10">
                 <div class="max-w-3xl">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 mb-6 text-xs font-bold tracking-wider text-indigo-950 border border-indigo-900/30 bg-indigo-100/50 rounded-full shadow-sm">
+                    <div class="reveal inline-flex items-center gap-2 px-3 py-1 mb-6 text-xs font-bold tracking-wider text-indigo-950 border border-indigo-900/30 bg-indigo-100/50 rounded-full shadow-sm">
                         <span class="relative flex h-2 w-2">
                           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-600 opacity-15"></span>
                           <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-600"></span>
@@ -61,66 +92,71 @@
                         L3 GÉOGRAPHIE & AMÉNAGEMENT
                     </div>
                     
-                    <h1 class="text-5xl md:text-7xl font-bold text-white tracking-tight leading-tight mb-8">
+                    <h1 class="reveal delay-100 text-5xl md:text-7xl font-bold text-white tracking-tight leading-tight mb-8">
                         Analyser le territoire <br>
                         par la donnée.
                     </h1>
                     
-                    <p class="text-xl text-text-muted leading-relaxed max-w-2xl mb-12">
+                    <p class="reveal delay-200 text-xl text-text-muted leading-relaxed max-w-2xl mb-12">
                         Je combine la <span class="text-white">Géomatique</span> et le <span class="text-white">Deep Learning</span> pour automatiser l'analyse spatiale. 
                         Actuellement en recherche d'alternance Master.
                     </p>
                     
-                    <div class="flex flex-wrap gap-8 items-center">
-                        <a href="#contact" class="px-6 py-3 rounded-full border-2 border-primary text-primary font-bold hover:bg-primary hover:text-white transition-colors duration-300">
-                            Me contacter
+                    <div class="reveal delay-300 flex flex-wrap gap-8 items-center">
+                        <a href="#contact" class="relative inline-flex h-12 overflow-hidden rounded-full p-[2px] focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-slate-50 group">
+                            <span class="absolute inset-[-1000%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#6366f1_0%,#6366f1_80%,#ffe4e6_90%,#6366f1_100%)]"></span>
+                            <span class="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-bg px-6 py-1 text-sm font-bold text-primary backdrop-blur-3xl transition-colors duration-300 group-hover:bg-primary group-hover:text-white">
+                                Me contacter
+                            </span>
                         </a>
+
                         <a href="#projets" class="text-white font-medium border-b border-white hover:border-primary hover:text-primary transition-colors pb-1">
                             Voir mes travaux
                         </a>
                         <div class="flex gap-4">
-                            <!-- Liens Social Hero - Pense à ajouter ton pseudo à la fin des URL -->
                             <a href="https://github.com/Vikikoz" target="_blank" rel="noopener noreferrer" class="text-text-muted hover:text-white transition-colors" aria-label="GitHub"><i class="fab fa-github text-xl"></i></a>
                             <a href="https://www.linkedin.com/in/viktorkozak/" target="_blank" rel="noopener noreferrer" class="text-text-muted hover:text-white transition-colors" aria-label="LinkedIn"><i class="fab fa-linkedin text-xl"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="absolute bottom-10 right-10 hidden md:block text-xs font-mono text-text-dark opacity-50 z-10">
-                LAT: 48.8566 N <br> LNG: 2.3522 E
+            <div class="absolute bottom-10 right-10 hidden md:block text-xs font-mono text-text-dark opacity-50 z-10 reveal delay-300">
+                LAT: 52.2296756 <br> LNG: 21.0122287
             </div>
         </section>
 
         <!-- COMPETENCES & PROFIL -->
-        <section id="a-propos" class="py-24 border-t border-white/5 bg-bg">
+        <section id="a-propos" class="py-16 bg-bg">
             <div class="max-w-7xl mx-auto px-6 lg:px-8">
                 <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
                     
                     <div class="md:col-span-4">
-                        <h2 class="text-3xl font-bold text-white sticky top-24">Profil & <br>Compétences</h2>
+                        <h2 class="reveal text-3xl font-bold text-white sticky top-24">Profil & <br>Compétences</h2>
                     </div>
 
                     <div class="md:col-span-8 space-y-16">
-                        <div>
+                        <div class="reveal delay-100">
                             <p class="text-lg text-text-muted leading-relaxed">
-                                Actuellement en L3, je construis un profil hybride. Mon stage de 3 mois en R&D m'a permis de maîtriser la chaîne de traitement IA complète : de la création du dataset à l'entraînement de modèles (YOLO, U-Net). Je souhaite poursuivre en Master Géomatique pour approfondir ces sujets.
+                                    Actuellement en L3, je construis un profil hybride tourné vers la géomatique et la télédétection. Mon objectif est de lier l'analyse géographique traditionnelle à des systèmes informatiques capables de traiter de grands volumes de données.<br>
+                                    Lors d'un stage de 3 mois, j'ai maîtrisé la chaîne de traitement IA complète : de la création de datasets, à l'entraînement de modèles.
+                                    Je souhaite poursuivre en Master pour approfondir ces sujets. Avec comme projet d'utiliser l'IA et l'automatisation pour "booster" l'analyse du territoire.
                             </p>
                         </div>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                            <div>
+                            <div class="reveal delay-200">
                                 <h4 class="text-white font-semibold mb-6 flex items-center gap-3">
                                     <i class="fas fa-layer-group text-secondary text-lg"></i> SIG & Cartographie
                                 </h4>
                                 <ul class="space-y-4">
                                     <li class="flex justify-between border-b border-white/5 pb-2"><span>QGIS & ArcGIS Pro</span></li>
-                                    <li class="flex justify-between border-b border-white/5 pb-2"><span>Télédétection (Sentinel, Landsat)</span></li>
+                                    <li class="flex justify-between border-b border-white/5 pb-2"><span>Télédétection (LiDAR, Sentinel)</span></li>
                                     <li class="flex justify-between border-b border-white/5 pb-2"><span>Cartographie thématique</span></li>
                                     <li class="flex justify-between border-b border-white/5 pb-2"><span>Bases de données spatiales</span></li>
                                 </ul>
                             </div>
                             
-                            <div>
+                            <div class="reveal delay-300">
                                 <h4 class="text-white font-semibold mb-6 flex items-center gap-3">
                                     <i class="fas fa-code text-primary text-lg"></i> Programmation & IA
                                 </h4>
@@ -132,15 +168,15 @@
                                 </ul>
                             </div>
 
-                            <div>
+                            <div class="reveal delay-200">
                                 <h4 class="text-white font-semibold mb-6 flex items-center gap-3">
                                     <i class="fas fa-gears text-emerald-500 text-lg"></i> Automatisation et Outils
                                 </h4>
                                 <ul class="space-y-4">
                                     <li class="flex justify-between border-b border-white/5 pb-2"><span>Prefect & N8N</span></li>
                                     <li class="flex justify-between border-b border-white/5 pb-2"><span>Git / GitHub</span></li>
-                                    <li class="flex justify-between border-b border-white/5 pb-2"><span>Docker</span></li>
                                     <li class="flex justify-between border-b border-white/5 pb-2"><span>Anaconda</span></li>
+                                    <li class="flex justify-between border-b border-white/5 pb-2"><span>Docker</span></li>
                                 </ul>
                             </div>
                         </div>
@@ -150,9 +186,9 @@
         </section>
 
         <!-- PROJETS SECTION -->
-        <section id="projets" class="py-24 border-t border-white/5">
+        <section id="projets" class="py-16">
             <div class="max-w-7xl mx-auto px-6 lg:px-8">
-                <div class="flex justify-between items-end mb-16">
+                <div class="flex justify-between items-end mb-16 reveal">
                     <h2 class="text-3xl font-bold text-white">Projets Sélectionnés</h2>
                     <span class="text-sm text-text-dark">2025 — 2026</span>
                 </div>
@@ -160,10 +196,9 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
                     
                     <!-- Projet 1 -->
-                    <a href="projet.html?id=1" class="group block cursor-pointer">
+                    <a href="projet.html?id=1" class="group block cursor-pointer reveal delay-100">
                         <article class="h-full">
                             <div class="relative overflow-hidden rounded-lg bg-surface aspect-[4/3] mb-6">
-                                <!-- Image locale avec fallback -->
                                 <img src="assets/img/ia-satellite-cover.jpg" 
                                      onerror="this.src='https://placehold.co/800x600/121212/6366f1?text=IA+Detection'"
                                      alt="IA Project" 
@@ -171,11 +206,11 @@
                             </div>
                             <div class="flex justify-between items-start">
                                 <div>
-                                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">Détection IA Satellite</h3>
-                                    <p class="text-text-muted text-sm mb-3">Entraînement YOLOv8 & U-Net sur imagerie aérienne.</p>
+                                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">Cartographie automatisée des vestiges de la Grande Guerre</h3>
+                                    <p class="text-text-muted text-sm mb-3">Détection de structures sous couvert forestier via LiDAR et Deep Learning.</p>
                                     <div class="flex gap-2">
-                                        <span class="text-xs text-text-dark border border-white/10 px-2 py-1 rounded">Python</span>
-                                        <span class="text-xs text-text-dark border border-white/10 px-2 py-1 rounded">PyTorch</span>
+                                        <span class="text-xs text-text-dark border border-white/10 px-2 py-1 rounded">LiDAR</span>
+                                        <span class="text-xs text-text-dark border border-white/10 px-2 py-1 rounded">Deep learning</span>
                                     </div>
                                 </div>
                                 <i class="fas fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform text-white"></i>
@@ -183,11 +218,11 @@
                         </article>
                     </a>
 
-                    <!-- Projet 2 -->
-                    <a href="projet.html?id=2" class="group block cursor-pointer">
+                    <!-- Projet 2 (Lien désactivé) -->
+                    <!-- MODIFICATION : Balise <a> remplacée par <div> et href retiré pour empêcher le clic -->
+                    <div class="group block reveal delay-200">
                         <article class="h-full">
                             <div class="relative overflow-hidden rounded-lg bg-surface aspect-[4/3] mb-6">
-                                <!-- Image locale avec fallback -->
                                 <img src="assets/img/urban-cover.jpg" 
                                      onerror="this.src='https://placehold.co/800x600/121212/6366f1?text=Analyse+Urbaine'"
                                      alt="Urban Project" 
@@ -195,36 +230,38 @@
                             </div>
                             <div class="flex justify-between items-start">
                                 <div>
-                                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">Analyse Urbaine</h3>
-                                    <p class="text-text-muted text-sm mb-3">Cartographie des flux et analyse spatiale urbaine.</p>
+                                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">Projet en construction</h3>
+                                    <p class="text-text-muted text-sm mb-3">Développement d'une interface graphique PyQt6 pour la gestion et le déploiement de scripts Python.</p>
                                     <div class="flex gap-2">
-                                        <span class="text-xs text-text-dark border border-white/10 px-2 py-1 rounded">QGIS</span>
-                                        <span class="text-xs text-text-dark border border-white/10 px-2 py-1 rounded">DataViz</span>
+                                        <span class="text-xs text-text-dark border border-white/10 px-2 py-1 rounded">Python</span>
+                                        <span class="text-xs text-text-dark border border-white/10 px-2 py-1 rounded">PyQt6</span>
                                     </div>
                                 </div>
-                                <i class="fas fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform text-white"></i>
+                                <!-- J'ai caché la flèche pour indiquer qu'il n'y a pas d'action possible -->
+                                <!-- <i class="fas fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform text-white"></i> -->
                             </div>
                         </article>
-                    </a>
+                    </div>
 
                 </div>
             </div>
         </section>
 
         <!-- CONTACT -->
-        <section id="contact" class="py-24 relative overflow-hidden" style="background: radial-gradient(ellipse 160% 100% at 50% 0%, #050505 40%, #1e1b4b 50%, #4f46e5 60%, #a855f7 75%, #ffffff 95%);">
+        <section id="contact" class="py-16 relative overflow-hidden animate-bg" style="background: radial-gradient(ellipse 160% 100% at 50% 0%, #050505 40%, #1e1b4b 50%, #4f46e5 60%, #a855f7 75%, #ffffff 95%);">
             <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center relative z-10">
-                <h2 class="text-3xl md:text-5xl font-bold text-white mb-8">Travaillons ensemble :)</h2>
-                <p class="text-gray-300 mb-10 max-w-xl mx-auto">
+                <h2 class="reveal text-3xl md:text-5xl font-bold text-white mb-8">Travaillons ensemble :)</h2>
+                <p class="reveal delay-100 text-gray-300 mb-10 max-w-xl mx-auto">
                     Disponible pour des opportunités de stage ou d'alternance.
                 </p>
-                <a href="mailto:vkzk204@gmail.com" class="inline-block bg-white text-black font-bold px-8 py-4 rounded-full hover:bg-black hover:text-white transition-colors shadow-xl">
-                    Me contacter
-                </a>
-                <div class="mt-24 pt-8 border-t border-gray-900/10 flex flex-col md:flex-row justify-between items-center text-sm text-gray-600">
+                <div class="reveal delay-200">
+                    <a href="mailto:vkzk204@gmail.com" class="inline-block bg-white text-black font-bold px-8 py-4 rounded-full hover:bg-black hover:text-white transition-colors shadow-xl">
+                        Me contacter
+                    </a>
+                </div>
+                <div class="mt-24 pt-8 border-t border-gray-900/10 flex flex-col md:flex-row justify-between items-center text-sm text-gray-600 reveal delay-300">
                     <p class="font-medium">&copy; 2025 Portfolio. Viktor Kozak</p>
                     <div class="flex gap-6 mt-4 md:mt-0">
-                        <!-- Liens Social Footer - Pense à ajouter ton pseudo à la fin des URL -->
                         <a href="https://www.linkedin.com/in/viktorkozak/" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-secondary transition-colors" aria-label="LinkedIn"><i class="fab fa-linkedin text-2xl"></i></a>
                         <a href="https://github.com/Vikikoz" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-secondary transition-colors" aria-label="GitHub"><i class="fab fa-github text-2xl"></i></a>
                     </div>
@@ -233,5 +270,34 @@
         </section>
 
     </div>
+
+    <!-- SCRIPT D'ANIMATION MODIFIÉ -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Configuration de l'observateur
+            const observerOptions = {
+                root: null, // viewport
+                rootMargin: '0px',
+                threshold: 0.1 // déclenche quand 10% de l'élément est visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    // Si l'élément entre dans l'écran
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    } 
+                    // Si l'élément sort de l'écran, on retire la classe pour pouvoir le ré-animer plus tard
+                    else {
+                        entry.target.classList.remove('active');
+                    }
+                });
+            }, observerOptions);
+
+            // Cible tous les éléments avec la classe .reveal
+            const elementsToReveal = document.querySelectorAll('.reveal');
+            elementsToReveal.forEach(el => observer.observe(el));
+        });
+    </script>
 </body>
 </html>

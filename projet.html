@@ -108,53 +108,65 @@
     <!-- SCRIPT LOGIC -->
     <script>
         // C'est ici que tu configures les noms de tes fichiers images
+        // C'est ici que tu configures les noms de tes fichiers images
         const projectsData = {
-            "1": {
-                title: "Détection IA Satellite",
-                subtitle: "Identification automatique d'objets sur imagerie aérienne haute résolution.",
-                // Chemin vers ton image dans le dossier assets/img/
-                image: "assets/img/ia-satellite-cover.jpg", 
-                role: "Lead Developer & Data Scientist",
-                date: "Juin - Août 2024",
-                tech: ["Python", "PyTorch", "YOLOv8", "U-Net", "GeoPandas"],
-                tags: ["R&D", "Deep Learning", "Télédétection"],
-                description: `
-                    <p class="mb-4">Ce projet a été réalisé dans le cadre de mon stage de L2/L3 en Recherche & Développement. L'objectif principal était de concevoir un pipeline complet capable de détecter et segmenter des structures spécifiques (bâtiments, végétation) sur des images satellites à très haute résolution.</p>
-                    <h3 class="text-white font-bold text-xl mt-8 mb-4">Méthodologie</h3>
-                    <p class="mb-4">J'ai commencé par la constitution d'un <strong>dataset personnalisé</strong>, annotant manuellement plus de 2000 images pour garantir la qualité des données d'entraînement. Cette étape cruciale a permis d'adapter les modèles aux spécificités du terrain étudié.</p>
-                    <h3 class="text-white font-bold text-xl mt-8 mb-4">Solutions Techniques</h3>
-                    <ul class="list-disc pl-5 space-y-2 mb-6 marker:text-primary">
-                        <li><strong class="text-white">YOLOv8</strong> : Utilisé pour la détection rapide d'objets en temps réel, offrant un excellent compromis vitesse/précision.</li>
-                        <li><strong class="text-white">U-Net</strong> : Déployé pour la segmentation sémantique fine, particulièrement efficace pour délimiter les zones de végétation dense.</li>
-                    </ul>
-                    <p>Les résultats ont permis d'automatiser une tâche qui prenait auparavant plusieurs jours à un cartographe, réduisant le temps de traitement à quelques minutes seulement avec un taux de précision (mAP) supérieur à 85%.</p>
-                `,
-                // Liste des images de la galerie pour ce projet
-                gallery: [
-                    "assets/img/ia-resultat-1.jpg",
-                    "assets/img/ia-resultat-2.jpg"
-                ]
-            },
-            "2": {
-                title: "Analyse Urbaine",
-                subtitle: "Étude des flux de mobilité et accessibilité des services.",
-                image: "assets/img/urban-cover.jpg",
-                role: "Analyste SIG",
-                date: "Janvier - Mars 2025",
-                tech: ["QGIS", "PostGIS", "Matplotlib", "Adobe Illustrator"],
-                tags: ["Urbanisme", "Cartographie", "Analyse Spatiale"],
-                description: `
-                    <p class="mb-4">Dans le cadre d'un projet universitaire, j'ai analysé les dynamiques de mobilité douce dans une agglomération moyenne. L'enjeu était d'identifier les zones de fracture urbaine.</p>
-                    <h3 class="text-white font-bold text-xl mt-8 mb-4">Approche</h3>
-                    <p class="mb-4">L'étude s'est basée sur des données Open Data combinées à des relevés terrain. J'ai utilisé <strong>QGIS</strong> pour réaliser des cartes isochrones et calculer des indices d'accessibilité aux transports en commun.</p>
-                    <p>Le rendu final comprenait une série de cartes thématiques et un tableau de bord interactif permettant aux décideurs de visualiser les zones blanches (mal desservies).</p>
-                `,
-                gallery: [
-                    "assets/img/urban-map-1.jpg",
-                    "assets/img/urban-map-2.jpg"
-                ]
-            }
-        };
+    "1": {
+        title: "Cartographie automatisée des vestiges de la Grande Guerre",
+        subtitle: "Détection de structures sous couvert forestier via LiDAR et Deep Learning.",
+        // Chemin vers ton image dans le dossier assets/img/
+        image: "assets/img/ia-satellite-cover.jpg", 
+        role: "Stagiaire",
+        date: "Juin - Août 2025",
+        tech: ["Python", "Anaconda", "QGIS", "U-Net", "YOLO", "Label Studio"],
+        tags: ["LiDAR", "Deep Learning",],
+        description: `
+            <p class="mb-4"><em>Projet réalisé au <strong>Laboratoire Médiations (Sorbonne Université)</strong> sous la direction de Rémi de Matos-Machado, en collaboration avec Tia Assan.</em></p>
+            
+            <h3 class="text-white font-bold text-xl mt-8 mb-4">Le Défi</h3>
+            <p class="mb-4">L'objectif est de détecter automatiquement les structures de la Grande Guerre (tranchées, baraquements) dissimulées sous le couvert forestier, là où l'œil humain et la photo-interprétation classique atteignent leurs limites.</p>
+            
+            <h3 class="text-white font-bold text-xl mt-8 mb-4">Phase 1 : Ingénierie & Recherche</h3>
+            <p class="mb-4">Le succès d'un modèle d'IA repose à 80% sur la qualité de la donnée.</p>
+            <ul class="list-disc pl-5 space-y-2 mb-6 marker:text-primary">
+                <li><strong>Preprocessing LiDAR :</strong> Conversion de nuages de points 3D (.LAS) en rasters et application de filtres (Hillshade, Openness) pour révéler les formes.</li>
+                <li><strong>Data Engineering :</strong> Annotation de 1 000 km de tranchées (sur QGIS) et de baraquements (Label Studio) pour créer un dataset équilibré.</li>
+                <li><strong>Modélisation :</strong> Entraînement de <strong>U-Net</strong> (segmentation sémantique des tranchées) et <strong>YOLOv8</strong> (détection d'objets).</li>
+            </ul>
+            
+            <h3 class="text-white font-bold text-xl mt-8 mb-4">Phase 2 : Vers l'industrialisation</h3>
+            <p class="mb-4">Je poursuis actuellement le développement du pipeline <em>End-to-End</em> :</p>
+            <ul class="list-disc pl-5 space-y-2 mb-6 marker:text-primary">
+                <li><strong>Déploiement :</strong> Création d'une API de prédiction via <strong>FastAPI</strong>.</li>
+                <li><strong>Interface Web :</strong> Développement d'une plateforme de visualisation des résultats.</li>
+                <li><strong>Orchestration :</strong> Automatisation du workflow avec <strong>Prefect</strong>.</li>
+            </ul>
+        `,
+        // Liste des images de la galerie pour ce projet
+        gallery: [
+            "assets/img/ia-resultat-1.jpg",
+            "assets/img/ia-resultat-2.jpg"
+        ]
+    },
+    "2": {
+        title: "Analyse Urbaine",
+        subtitle: "Étude des flux de mobilité et accessibilité des services.",
+        image: "assets/img/urban-cover.jpg",
+        role: "Analyste SIG",
+        date: "Janvier - Mars 2025",
+        tech: ["QGIS", "PostGIS", "Matplotlib", "Adobe Illustrator"],
+        tags: ["Urbanisme", "Cartographie", "Analyse Spatiale"],
+        description: `
+            <p class="mb-4">Dans le cadre d'un projet universitaire, j'ai analysé les dynamiques de mobilité douce dans une agglomération moyenne. L'enjeu était d'identifier les zones de fracture urbaine.</p>
+            <h3 class="text-white font-bold text-xl mt-8 mb-4">Approche</h3>
+            <p class="mb-4">L'étude s'est basée sur des données Open Data combinées à des relevés terrain. J'ai utilisé <strong>QGIS</strong> pour réaliser des cartes isochrones et calculer des indices d'accessibilité aux transports en commun.</p>
+            <p>Le rendu final comprenait une série de cartes thématiques et un tableau de bord interactif permettant aux décideurs de visualiser les zones blanches (mal desservies).</p>
+        `,
+        gallery: [
+            "assets/img/urban-map-1.jpg",
+            "assets/img/urban-map-2.jpg"
+        ]
+    }
+};
 
         const urlParams = new URLSearchParams(window.location.search);
         const projectId = urlParams.get('id');
